@@ -53,9 +53,6 @@
   }
 }
 
-
-
-
 function sortlist_alfa(albums) {
 	var albums_sorted = albums.sort(
 		function (album1,album2) {
@@ -77,5 +74,9 @@ function sortlist_date(albums) {
 }
 
 function makelist() {
-	sortlist_date(albums);
+	displaylist(albums);
+}
+
+function sortlist_by_date() {
+	sortlist_date(albums)
 }
