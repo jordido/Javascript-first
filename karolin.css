@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link href="karolin.css" rel="stylesheet" type="text/css" />  -->
-  <script src="super.js"></script>
+.menu{ display: inline-block;
+			background: #D9D6C5;
+			border-radius: 5px;
+			padding:10px;
+			box-shadow: 1px 1px 10px #77A89A,
+									2px 2px 0px #D9D6C5;
+			font-family: Helvetica;
+			color: white;
+			font-size: 14px;
+			text-shadow: 1px 1px 1px #5A6363;
+}
 
-</head>
-  <body onLoad='makelist()'>
+body{
+				background: #7EA895;
+								
+}
 
+.menu:active {
+  box-shadow: 1px 1px 10px #73A89A;
+}
 
-
-  <script src="super.js"></script>
-</body>
-</html>
+.menu:hover {
+    background: #FF00FF;
+}
