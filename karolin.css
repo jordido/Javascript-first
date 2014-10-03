@@ -31,3 +31,29 @@ body{
     background: #FF00FF;
 }
 
+
+#search {
+	position: relative;
+	margin-left: 36px;
+	display: inline-block;
+	background: #FFFFFF;
+	border-radius: 5px ;
+	padding: 10px;
+}
+
+
+
+.image{
+  border: 1px solid  grey;
+  width: 200px;
+  height: 200px;
+  
+}
+
+#list ul li {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  margin:6px;
+
+}
