@@ -15,6 +15,14 @@ body{
 								
 }
 
+.menu#menu1:before{
+		content: " ";
+	  border-radius:5px;
+	  background:black;
+	  opacity:0.075;
+
+}
+
 .menu:active {
   box-shadow: 1px 1px 10px #73A89A;
 }
@@ -22,3 +30,4 @@ body{
 .menu:hover {
     background: #FF00FF;
 }
+
