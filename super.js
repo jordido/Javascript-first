@@ -64,7 +64,6 @@
   }
 }
 
-
 function sortlist_alfa() {
 	cleanlist();
   var albums_sorted = albums.sort(
@@ -115,8 +114,4 @@ var k = document.getElementById('menu4');
 k.addEventListener('click', sortlist_rating, false);
 
 }
-
-
-
-
 
