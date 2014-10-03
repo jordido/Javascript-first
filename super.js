@@ -64,6 +64,15 @@
   }
 }
 
+function findinlist(albums,text) {
+  var albums_find = [];
+  for (var i in albums) {
+    if (albums[i].album_name.search(text) > -1) albums_find.push(albums[i]);
+  }
+  cleanlist();
+  displaylist(albums_find);
+}
+
 function sortlist_alfa() {
 	cleanlist();
   var albums_sorted = albums.sort(
@@ -97,6 +106,16 @@ function sortlist_rating() {
   displaylist(albums_sorted);
 }
 
+var l =document.getElementById('search');
+
+
+var searchfunc=function() {
+  // var l = document.getElementById('search');
+  findinlist(albums, l.value);
+};
+
+var l =document.getElementById('search');
+
 function makelist() {
 
 displaylist(albums)
@@ -112,6 +131,10 @@ j.addEventListener('click', sortlist_date, false);
 var k = document.getElementById('menu4');
 
 k.addEventListener('click', sortlist_rating, false);
+
+// var l =document.getElementById('search');
+
+l.addEventListener('keyup', searchfunc, false);
 
 }
 

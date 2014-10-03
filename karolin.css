@@ -22,3 +22,12 @@ body{
 .menu:hover {
     background: #FF00FF;
 }
+
+#search {
+	position: relative;
+	margin-left: 36px;
+	display: inline-block;
+	background: #FFFFFF;
+	border-radius: 5px ;
+	padding: 10px;
+}
