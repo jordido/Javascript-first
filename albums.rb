@@ -1,87 +1,53 @@
-require 'rubygems'
-require 'active_record'
+
 require 'sinatra'
 require 'sinatra/reloader'
-#require 'sinatra/flash'
-# require 'date'
-#require "pry"
-require 'imdb'
-#require_relative 'List'
+require 'json'
+require 'date'
+
 set :port, 3000
 set :bind, '0.0.0.0'
 
 
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'ironhackmdb.sqlite'
-)
+albums = [
+  {
+    album_name: 'if everyone is doing it why so can we',
+    artist: 'the cramberries',
+    rating: 3,
+    relDate: "10-3-1995",
+    url: "http://www.technobuffalo.com/wp-content/uploads/2014/05/google-plus-stories-03-200x200.png"
+  },
+  {
+    album_name: 'borriquito como tú',
+    artist: 'Peret',
+    rating: 4,
+    relDate: "10-3-1998",
+    url: "http://media-cache-ec0.pinimg.com/236x/30/d4/c9/30d4c9ed980dddf9b7ce624e6e0ab03b.jpg"
+  },
+  {
+    album_name: 'zoquetito como tú',
+    artist: 'Manolito',
+    rating: 5,
+    relDate: "10-3-2007",
+    url: "https://lh3.googleusercontent.com/-mUtYVYBlmIw/Tkau7teGygI/AAAAAAAADFo/gMjGoTapZus/w200/17539%2B-%2Banimated%2Bbrushie%2Bbrushie_brushie%2Bbrushie_brushie_brushie%2Bderp%2Brainbow_dash%2Btoothbrush.gif"
+  },
+  {
+    album_name: 'arre Arre',
+    artist: 'Alicias',
+    rating: 2,
+    relDate: "10-3-1998",
+    url: "https://lh6.googleusercontent.com/-CCydSjeFVg0/U4DOfHYRyXI/AAAAAAAANEI/dYvniJCBjXM/s200/DSC_0138-001.JPG" 
+  }
+]
 
 
-class TVShow < ActiveRecord::Base
-		
-  validates_presence_of :name, :own_rating, :own_comments   
-  validates_uniqueness_of :name
-	validates :own_rating, numericality: true, inclusion: {in: (0..10)}
-	validates :own_comments, length: {in: 10..10000}	
-
-
-	def get_imdb_data  #returns array of four elements with Imdb info
-			movie = Imdb::Search.new(name).movies.first		
-			serie = Imdb::Serie.new(movie.id)
-			my_tvshow_link = "/tv_shows/" + movie.id.to_s
-			return [movie.rating, serie.seasons.count, serie.url, my_tvshow_link, movie.poster]
-	end
-
-	def data_by_id (tvshow_id)
-			movie = Imdb::Movie.new(tvshow_id)
-			serie = Imdb::Serie.new(tvshow_id)
-			my_tvshow_link = "/tv_shows/" + movie.id.to_s
-			return [movie.rating, serie.seasons.count, serie.url, my_tvshow_link, movie.poster, movie.title]
-	end
-
-
+get '/' do	
+	erb :index
 end
 
-get '/' do
-	@list = TVShow.all
-	erb :index  
+get '/albums' do
+	content_type :json
+	albums.to_json
 end
-
-get '/our_ranking' do
-	@list =TVShow.all
-	erb :our_ranking
-end
-
-get '/imdb_ranking' do
-	@list = []
-	TVShow.all.each do |tvshow|
-		@list << [tvshow, tvshow.get_imdb_data ]
-	end
-	erb :imdb_ranking
-end
-
-get '/tv_shows/:tv_shows_id' do
-		@show_info = TVShow.new.data_by_id(params[:tv_shows_id])
-	erb :tv_shows
-end
-
-post '/' do
-	if params[:action] == 'add'
-		myshow=TVShow.create(name: params[:show], own_comments: params[:comments], own_rating: params[:rating].to_i)
-		myshow.save 
-#		binding.pry
-		if myshow.valid? 
-			@list = TVShow.all
-			erb :index
-		else
-			@errors = []
-			myshow.errors.each do |attr, err| 
-				@errors << "#{attr} - #{err}"
-			end
-			erb :error
-		end
-	end
-end	
 
 
 

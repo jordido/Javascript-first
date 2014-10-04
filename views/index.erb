@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <link href="karolin.css" rel="stylesheet" type="text/css" />  -->
-  <script src="super.js"></script>
-
+  <link href="karolin.css" rel="stylesheet" type="text/css" />
+  <script  type="text/javascript" src="jquery-2.1.1.min.js"></script>
 </head>
-  <body onLoad='makelist()'>
+  <body>
 	  <nav>
 	  	<ul>
 	  		<li class="menu" id="menu1"><a>Home</a></li>
@@ -19,10 +18,15 @@
 	  </nav>
 	<div id="container">
 	</div>
-
-
-  <script src="super.js"></script>
+	<script src="super.js"></script>
+	<script>
+		 $.get('http://localhost:3000/albums', function(data) {
+			albums = data
+			makelist(data);
+		});
+	</script> 
 
 </body>
 </html>
 
+ 
