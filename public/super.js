@@ -11,20 +11,43 @@
   function create_li(listElement, album) {
         // create a <li> for each one.
       var listItem = document.createElement("li");
+      var titleItem = document.createElement("h3");
+      var artistItem = document.createElement("h4");
+      var relDateItem = document.createElement("p");
+      var starBlock = document.createElement("ul");
       var starItem = document.createElement("li");
-      starItem.innerHTML= "<span index=1> &#9733;</span>"+
-                          "<span index=2> &#9733;</span>"+
-                          "<span index=3> &#9733;</span>"
+
+      var starString ="";
+
+      // creating stars div, black and white 
+      var i_star = 0;
+      for (; i_star < album.rating; i_star++) {
+        starString += "<span index="+ (i_star+1) +"> &#9733;</span>";
+      }
+      for (; i_star < 5; i_star++) {
+        starString += "<span index="+ (i_star+1) +"> &#9734;</span>";
+      }
+
+      starItem.innerHTML= starString;
+      starItem.setAttribute("class","stars");
 
       // add the item text
-      var options = {year: "numeric", month: "long", day: "numeric"}
+      //var options = {year: "numeric", month: "long", day: "numeric"}
 
       // var dateF = album.relDate.toLocaleDateString(); 
-      listItem.innerHTML = album.album_name + "-->  " +  album.artist + "  -->  " + album.rating + "  -->  " + album.relDate;
+      titleItem.innerHTML = album.album_name
+      artistItem.innerHTML = album.artist
+      relDateItem.innerHTML = album.relDate;
       // add listItem to the listElement
+
+      listItem.appendChild(titleItem);
+      listItem.appendChild(artistItem);
+      listItem.appendChild(relDateItem);
+      starBlock.appendChild(starItem);
+      listItem.appendChild(starBlock);
       var superimage = document.createElement("img");
       superimage.setAttribute("src",album.url)
-      listItem.appendChild(superimage)
+      listItem.appendChild(superimage);
       listElement.appendChild(listItem);
   }
   
@@ -114,4 +137,3 @@ function makelist(albums) {
     l.addEventListener('keyup', searchfunc, false);
 
 }
-

@@ -53,34 +53,26 @@ body{
 
 #list {
 	display: inline-block;
-
 }
 
 
 #list ul {
-	list-style-type: none;
-	padding-left: 0px;	
+	margin-left: 0px;
+	-webkit-margin-left: 0px;
+	display: inline-block;
+  width: 200px;
   background: #0f0f0f;
   margin:6px;
 }
 
 #list ul li {
-	display: inline-block;
-
   background: #ffffff;
   margin:6px;
-  padding: 10px;
 
 }
 
-#list ul li ul {
-	list-style-type: none;
-}
-
-.stars {
+* .stars {
 	border: 1px solid grey;
 	width: 150px;	
 	height: 15px;
-	padding: 0px;
-	margin: 0px;
 }
